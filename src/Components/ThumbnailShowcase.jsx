@@ -1,10 +1,13 @@
-import React, { useState, useEffect } from 'react';
-import { X, Play, Eye, Heart, Share2 } from 'lucide-react';
+"use client"
+
+import { useState, useEffect } from "react"
 import BackgroundIMG from '../assets/ExampleIMG.jpg';
+import { X, Play, Eye, Heart, Share2, Sparkles, Zap } from "lucide-react"
 
 const ThumbnailShowcase = () => {
-    const [selectedThumbnail, setSelectedThumbnail] = useState(null);
-    const [visibleItems, setVisibleItems] = useState(new Set());
+    const [selectedThumbnail, setSelectedThumbnail] = useState(null)
+    const [visibleItems, setVisibleItems] = useState(new Set())
+    const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
 
     // Sample thumbnail data - replace with your actual thumbnails
     const thumbnails = [
@@ -55,70 +58,144 @@ const ThumbnailShowcase = () => {
         }
     ];
 
+    useEffect(() => {
+        const handleMouseMove = (e) => {
+            setMousePosition({ x: e.clientX, y: e.clientY })
+        }
+
+        window.addEventListener("mousemove", handleMouseMove)
+        return () => window.removeEventListener("mousemove", handleMouseMove)
+    }, [])
+
     // Intersection Observer for scroll animations
     useEffect(() => {
         const observer = new IntersectionObserver(
             (entries) => {
                 entries.forEach((entry) => {
                     if (entry.isIntersecting) {
-                        setVisibleItems(prev => new Set(prev).add(entry.target.dataset.id));
+                        setVisibleItems((prev) => new Set(prev).add(entry.target.dataset.id))
                     }
-                });
+                })
             },
-            { threshold: 0.1, rootMargin: '50px' }
-        );
+            { threshold: 0.1, rootMargin: "50px" },
+        )
 
-        const elements = document.querySelectorAll('[data-animate]');
-        elements.forEach((el) => observer.observe(el));
+        const elements = document.querySelectorAll("[data-animate]")
+        elements.forEach((el) => observer.observe(el))
 
-        return () => observer.disconnect();
-    }, []);
+        return () => observer.disconnect()
+    }, [])
 
     const openFullscreen = (thumbnail) => {
-        setSelectedThumbnail(thumbnail);
-        document.body.style.overflow = 'hidden';
-    };
+        setSelectedThumbnail(thumbnail)
+        document.body.style.overflow = "hidden"
+    }
 
     const closeFullscreen = () => {
-        setSelectedThumbnail(null);
-        document.body.style.overflow = 'auto';
-    };
+        setSelectedThumbnail(null)
+        document.body.style.overflow = "auto"
+    }
 
     return (
-        <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
-            {/* Animated Background */}
-            <div className="fixed inset-0 overflow-hidden pointer-events-none">
-                <div className="absolute -top-40 -right-40 w-80 h-80 bg-purple-500 rounded-full mix-blend-multiply filter blur-2xl opacity-20 animate-pulse"></div>
-                <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-pink-500 rounded-full mix-blend-multiply filter blur-2xl opacity-20 animate-pulse delay-1000"></div>
-                <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-blue-500 rounded-full mix-blend-multiply filter blur-3xl opacity-10 animate-pulse delay-2000"></div>
+        <div className="min-h-screen relative overflow-hidden">
+            <div className="fixed inset-0 bg-gradient-to-br from-slate-950 via-purple-950 to-indigo-950">
+                {/* Mesh gradient overlay */}
+                <div className="absolute inset-0 bg-gradient-to-tr from-cyan-500/10 via-purple-500/20 to-pink-500/10"></div>
+
+                {/* Dynamic floating orbs */}
+                <div className="absolute inset-0 overflow-hidden">
+                    <div
+                        className="absolute w-96 h-96 bg-gradient-to-r from-purple-500/30 to-pink-500/30 rounded-full mix-blend-multiply filter blur-3xl animate-float"
+                        style={{
+                            left: `${20 + mousePosition.x * 0.02}%`,
+                            top: `${10 + mousePosition.y * 0.01}%`,
+                        }}
+                    ></div>
+                    <div
+                        className="absolute w-80 h-80 bg-gradient-to-r from-cyan-500/25 to-blue-500/25 rounded-full mix-blend-multiply filter blur-3xl animate-float-delayed"
+                        style={{
+                            right: `${15 + mousePosition.x * -0.015}%`,
+                            bottom: `${20 + mousePosition.y * -0.01}%`,
+                        }}
+                    ></div>
+                    <div
+                        className="absolute w-72 h-72 bg-gradient-to-r from-emerald-500/20 to-teal-500/20 rounded-full mix-blend-multiply filter blur-3xl animate-pulse"
+                        style={{
+                            left: `${60 + mousePosition.x * 0.01}%`,
+                            top: `${60 + mousePosition.y * 0.015}%`,
+                        }}
+                    ></div>
+                </div>
+
+                {/* Animated grid pattern */}
+                <div className="absolute inset-0 opacity-10">
+                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent animate-shimmer"></div>
+                    <svg className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <pattern id="grid" width="60" height="60" patternUnits="userSpaceOnUse">
+                                <path d="M 60 0 L 0 0 0 60" fill="none" stroke="rgba(255,255,255,0.1)" strokeWidth="1" />
+                            </pattern>
+                        </defs>
+                        <rect width="100%" height="100%" fill="url(#grid)" />
+                    </svg>
+                </div>
+
+                {/* Floating particles */}
+                <div className="absolute inset-0">
+                    {[...Array(20)].map((_, i) => (
+                        <div
+                            key={i}
+                            className="absolute w-1 h-1 bg-white/30 rounded-full animate-float-particle"
+                            style={{
+                                left: `${Math.random() * 100}%`,
+                                top: `${Math.random() * 100}%`,
+                                animationDelay: `${Math.random() * 5}s`,
+                                animationDuration: `${3 + Math.random() * 4}s`,
+                            }}
+                        ></div>
+                    ))}
+                </div>
             </div>
 
-            {/* Hero Section */}
-            <div className="relative z-10 pt-20 pb-16 px-6">
+            <div className="relative z-10 pt-24 pb-20 px-6">
                 <div className="max-w-7xl mx-auto text-center">
-                    <h1 className="text-6xl md:text-8xl font-black bg-gradient-to-r from-white via-purple-200 to-pink-200 bg-clip-text text-transparent mb-6 tracking-tight animate-fade-in">
-                        THUMBNAIL
+                    {/* Floating badge */}
+                    <div className="inline-flex items-center gap-2 px-4 py-2 mb-8 bg-white/10 backdrop-blur-md rounded-full border border-white/20 text-sm text-white/90 animate-fade-in">
+                        <Sparkles className="w-4 h-4 text-yellow-400" />
+                        Premium Thumbnail Collection
+                        <Zap className="w-4 h-4 text-blue-400" />
+                    </div>
+
+                    <h1 className="text-7xl md:text-9xl font-black mb-8 tracking-tight animate-fade-in">
+                        <span className="bg-gradient-to-r from-white via-purple-200 to-cyan-200 bg-clip-text text-transparent drop-shadow-2xl">
+                            THUMBNAIL
+                        </span>
                         <br />
-                        <span className="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">SHOWCASE</span>
+                        <span className="bg-gradient-to-r from-purple-400 via-pink-400 to-cyan-400 bg-clip-text text-transparent animate-gradient-x">
+                            SHOWCASE
+                        </span>
                     </h1>
-                    <p className="text-xl md:text-2xl text-gray-300 mb-8 max-w-3xl mx-auto leading-relaxed animate-fade-in-delay">
-                        Discover eye-catching YouTube thumbnail designs that drive clicks and boost engagement
+
+                    <p className="text-xl md:text-2xl text-gray-300 mb-12 max-w-4xl mx-auto leading-relaxed animate-fade-in-delay font-light">
+                        Discover eye-catching YouTube thumbnail designs that drive clicks and boost engagement.
+                        <span className="text-purple-300 font-medium"> Crafted by professionals, proven by results.</span>
                     </p>
-                    <div className="flex flex-wrap justify-center gap-4 text-sm text-gray-400">
-                        <span className="px-4 py-2 bg-white/5 backdrop-blur-sm rounded-full border border-white/10">
-                            ✨ Premium Quality
+
+                    {/* Enhanced feature badges */}
+                    <div className="flex flex-wrap justify-center gap-4 text-sm">
+                        <span className="px-6 py-3 bg-gradient-to-r from-purple-500/20 to-pink-500/20 backdrop-blur-md rounded-full border border-purple-400/30 text-white/90 hover:scale-105 transition-transform duration-300">
+                            ✨ Premium Quality Designs
                         </span>
-                        <span className="px-4 py-2 bg-white/5 backdrop-blur-sm rounded-full border border-white/10">
-                            🎯 High CTR Designs
+                        <span className="px-6 py-3 bg-gradient-to-r from-cyan-500/20 to-blue-500/20 backdrop-blur-md rounded-full border border-cyan-400/30 text-white/90 hover:scale-105 transition-transform duration-300">
+                            🎯 High CTR Guaranteed
                         </span>
-                        <span className="px-4 py-2 bg-white/5 backdrop-blur-sm rounded-full border border-white/10">
+                        <span className="px-6 py-3 bg-gradient-to-r from-emerald-500/20 to-teal-500/20 backdrop-blur-md rounded-full border border-emerald-400/30 text-white/90 hover:scale-105 transition-transform duration-300">
                             🚀 Results Driven
                         </span>
                     </div>
                 </div>
             </div>
 
-            {/* Thumbnail Grid */}
             <div className="relative z-10 px-6 pb-20">
                 <div className="max-w-7xl mx-auto">
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -159,59 +236,105 @@ const ThumbnailShowcase = () => {
                 </div>
             </div>
 
-            {/* Fullscreen Modal */}
             {selectedThumbnail && (
-                <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/95 backdrop-blur-sm animate-fade-in">
+                <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-xl">
                     <div className="relative max-w-6xl max-h-screen p-6">
                         <button
                             onClick={closeFullscreen}
-                            className="absolute -top-2 -right-2 z-10 w-12 h-12 bg-white/10 backdrop-blur-sm hover:bg-white/20 rounded-full flex items-center justify-center transition-all duration-200 hover:scale-110"
+                            className="absolute -top-2 -right-2 z-10 w-14 h-14 bg-white/10 backdrop-blur-md hover:bg-white/20 rounded-full flex items-center justify-center transition-all duration-200 hover:scale-110 border border-white/20"
                         >
                             <X className="w-6 h-6 text-white" />
                         </button>
 
-                        <div className="relative rounded-2xl overflow-hidden shadow-2xl transform animate-scale-in">
+                        <div className="relative rounded-3xl overflow-hidden shadow-2xl transform animate-scale-in border border-white/20">
                             <img
-                                src={selectedThumbnail.image}
+                                src={selectedThumbnail.image || "/placeholder.svg"}
                                 alt={selectedThumbnail.title}
                                 className="w-full h-auto max-h-[80vh] object-contain"
                             />
-
-                            <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-8">
-                                <h2 className="text-3xl font-bold text-white mb-2">
-                                    {selectedThumbnail.title}
-                                </h2>
-                            </div>
                         </div>
                     </div>
                 </div>
             )}
 
             <style jsx>{`
-        @keyframes fade-in {
-          from { opacity: 0; transform: translateY(30px); }
-          to { opacity: 1; transform: translateY(0); }
-        }
-        
-        @keyframes scale-in {
-          from { opacity: 0; transform: scale(0.9); }
-          to { opacity: 1; transform: scale(1); }
-        }
-        
-        .animate-fade-in {
-          animation: fade-in 1s ease-out;
-        }
-        
-        .animate-fade-in-delay {
-          animation: fade-in 1s ease-out 0.3s both;
-        }
-        
-        .animate-scale-in {
-          animation: scale-in 0.3s ease-out;
-        }
-      `}</style>
+                @keyframes fade-in {
+                    from { opacity: 0; transform: translateY(30px); }
+                    to { opacity: 1; transform: translateY(0); }
+                }
+                
+                @keyframes scale-in {
+                    from { opacity: 0; transform: scale(0.9); }
+                    to { opacity: 1; transform: scale(1); }
+                }
+                
+                @keyframes float {
+                    0%, 100% { transform: translateY(0px) rotate(0deg); }
+                    50% { transform: translateY(-20px) rotate(180deg); }
+                }
+                
+                @keyframes float-delayed {
+                    0%, 100% { transform: translateY(0px) rotate(0deg); }
+                    50% { transform: translateY(-30px) rotate(-180deg); }
+                }
+                
+                @keyframes float-particle {
+                    0%, 100% { transform: translateY(0px) translateX(0px); opacity: 0; }
+                    50% { transform: translateY(-100px) translateX(20px); opacity: 1; }
+                }
+                
+                @keyframes shimmer {
+                    0% { transform: translateX(-100%); }
+                    100% { transform: translateX(100%); }
+                }
+                
+                @keyframes gradient-x {
+                    0%, 100% { background-position: 0% 50%; }
+                    50% { background-position: 100% 50%; }
+                }
+                
+                .animate-fade-in {
+                    animation: fade-in 1s ease-out;
+                }
+                
+                .animate-fade-in-delay {
+                    animation: fade-in 1s ease-out 0.3s both;
+                }
+                
+                .animate-scale-in {
+                    animation: scale-in 0.3s ease-out;
+                }
+                
+                .animate-float {
+                    animation: float 6s ease-in-out infinite;
+                }
+                
+                .animate-float-delayed {
+                    animation: float-delayed 8s ease-in-out infinite;
+                }
+                
+                .animate-float-particle {
+                    animation: float-particle 4s ease-in-out infinite;
+                }
+                
+                .animate-shimmer {
+                    animation: shimmer 3s ease-in-out infinite;
+                }
+                
+                .animate-gradient-x {
+                    background-size: 200% 200%;
+                    animation: gradient-x 3s ease infinite;
+                }
+                
+                .line-clamp-2 {
+                    display: -webkit-box;
+                    -webkit-line-clamp: 2;
+                    -webkit-box-orient: vertical;
+                    overflow: hidden;
+                }
+            `}</style>
         </div>
-    );
-};
+    )
+}
 
-export default ThumbnailShowcase;
+export default ThumbnailShowcase
