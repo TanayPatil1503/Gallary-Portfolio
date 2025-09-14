@@ -1,13 +1,15 @@
 "use client"
 
 import { useState, useEffect } from "react"
+import { X, Sparkles, Zap, Target, TrendingUp } from "lucide-react"
 import BackgroundIMG from '../assets/ExampleIMG.jpg';
-import { X, Play, Eye, Heart, Share2, Sparkles, Zap } from "lucide-react"
+
 
 const ThumbnailShowcase = () => {
     const [selectedThumbnail, setSelectedThumbnail] = useState(null)
     const [visibleItems, setVisibleItems] = useState(new Set())
     const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
+    const [loadingImages, setLoadingImages] = useState(new Set())
 
     // Sample thumbnail data - replace with your actual thumbnails
     const thumbnails = [
@@ -57,6 +59,31 @@ const ThumbnailShowcase = () => {
             image: BackgroundIMG,
         }
     ];
+
+    const handleImageLoadStart = (thumbnailId) => {
+        setLoadingImages((prev) => new Set(prev).add(thumbnailId))
+    }
+
+    const handleImageLoadComplete = (thumbnailId) => {
+        setLoadingImages((prev) => {
+            const newSet = new Set(prev)
+            newSet.delete(thumbnailId)
+            return newSet
+        })
+    }
+
+    const LoadingSpinner = () => (
+        <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-purple-900/20 to-cyan-900/20 backdrop-blur-sm">
+            <div className="relative">
+                {/* Outer rotating ring */}
+                <div className="w-16 h-16 border-4 border-purple-500/30 border-t-purple-400 rounded-full animate-spin"></div>
+                {/* Inner pulsing dot */}
+                <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-3 h-3 bg-gradient-to-r from-purple-400 to-cyan-400 rounded-full animate-pulse"></div>
+                {/* Glowing effect */}
+                <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-16 h-16 bg-purple-400/20 rounded-full animate-ping"></div>
+            </div>
+        </div>
+    )
 
     useEffect(() => {
         const handleMouseMove = (e) => {
@@ -160,11 +187,6 @@ const ThumbnailShowcase = () => {
             <div className="relative z-10 pt-24 pb-20 px-6">
                 <div className="max-w-7xl mx-auto text-center">
                     {/* Floating badge */}
-                    <div className="inline-flex items-center gap-2 px-4 py-2 mb-8 bg-white/10 backdrop-blur-md rounded-full border border-white/20 text-sm text-white/90 animate-fade-in">
-                        <Sparkles className="w-4 h-4 text-yellow-400" />
-                        Premium Thumbnail Collection
-                        <Zap className="w-4 h-4 text-blue-400" />
-                    </div>
 
                     <h1 className="text-7xl md:text-9xl font-black mb-8 tracking-tight animate-fade-in">
                         <span className="bg-gradient-to-r from-white via-purple-200 to-cyan-200 bg-clip-text text-transparent drop-shadow-2xl">
@@ -183,16 +205,20 @@ const ThumbnailShowcase = () => {
 
                     {/* Enhanced feature badges */}
                     <div className="flex flex-wrap justify-center gap-4 text-sm">
-                        <span className="px-6 py-3 bg-gradient-to-r from-purple-500/20 to-pink-500/20 backdrop-blur-md rounded-full border border-purple-400/30 text-white/90 hover:scale-105 transition-transform duration-300">
-                            ✨ Premium Quality Designs
+                        <span className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-purple-500/20 to-pink-500/20 backdrop-blur-md rounded-full border border-purple-400/30 text-white/90 hover:bg-cyan-50/5 transition-colors duration-300">
+                            <Sparkles className="w-4 h-4 text-purple-300" />
+                            Premium Quality Designs
                         </span>
-                        <span className="px-6 py-3 bg-gradient-to-r from-cyan-500/20 to-blue-500/20 backdrop-blur-md rounded-full border border-cyan-400/30 text-white/90 hover:scale-105 transition-transform duration-300">
-                            🎯 High CTR Guaranteed
+                        <span className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-cyan-500/20 to-blue-500/20 backdrop-blur-md rounded-full border border-cyan-400/30 text-white/90 hover:bg-cyan-50/5 transition-colors duration-300">
+                            <Target className="w-4 h-4 text-cyan-300" />
+                            High CTR
                         </span>
-                        <span className="px-6 py-3 bg-gradient-to-r from-emerald-500/20 to-teal-500/20 backdrop-blur-md rounded-full border border-emerald-400/30 text-white/90 hover:scale-105 transition-transform duration-300">
-                            🚀 Results Driven
+                        <span className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-emerald-500/20 to-teal-500/20 backdrop-blur-md rounded-full border border-emerald-400/30 text-white/90 hover:bg-cyan-50/5 transition-colors duration-300">
+                            <TrendingUp className="w-4 h-4 text-emerald-300" />
+                            Results Driven
                         </span>
                     </div>
+
                 </div>
             </div>
 
@@ -204,9 +230,7 @@ const ThumbnailShowcase = () => {
                                 key={thumbnail.id}
                                 data-id={thumbnail.id}
                                 data-animate="true"
-                                className={`group cursor-pointer transform transition-all duration-700 ${visibleItems.has(thumbnail.id.toString())
-                                    ? 'translate-y-0 opacity-100'
-                                    : 'translate-y-16 opacity-0'
+                                className={`group cursor-pointer transform transition-all duration-700 ${visibleItems.has(thumbnail.id.toString()) ? "translate-y-0 opacity-100" : "translate-y-16 opacity-0"
                                     }`}
                                 style={{ transitionDelay: `${index * 100}ms` }}
                                 onClick={() => openFullscreen(thumbnail)}
@@ -214,18 +238,21 @@ const ThumbnailShowcase = () => {
                                 <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-sm border border-white/10 group-hover:border-purple-400/50 transition-all duration-500 group-hover:scale-105 group-hover:shadow-2xl group-hover:shadow-purple-500/25">
                                     {/* Thumbnail Image */}
                                     <div className="aspect-video relative overflow-hidden">
+                                        {loadingImages.has(thumbnail.id) && <LoadingSpinner />}
                                         <img
-                                            src={thumbnail.image}
+                                            src={thumbnail.image || "/placeholder.svg"}
                                             alt={thumbnail.title}
                                             className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                                            onLoadStart={() => handleImageLoadStart(thumbnail.id)}
+                                            onLoad={() => handleImageLoadComplete(thumbnail.id)}
+                                            onError={() => handleImageLoadComplete(thumbnail.id)}
                                         />
                                         <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-
                                     </div>
 
                                     {/* Thumbnail Info */}
-                                    <div className="p-6">
-                                        <h3 className="text-xl font-bold text-white mb-3 group-hover:text-purple-300 transition-colors duration-300">
+                                    <div className="px-6 py-2">
+                                        <h3 className="text-xl font-bold text-white group-hover:text-purple-300 transition-colors duration-300">
                                             {thumbnail.title}
                                         </h3>
                                     </div>
@@ -247,10 +274,14 @@ const ThumbnailShowcase = () => {
                         </button>
 
                         <div className="relative rounded-3xl overflow-hidden shadow-2xl transform animate-scale-in border border-white/20">
+                            {loadingImages.has(`fullscreen-${selectedThumbnail.id}`) && <LoadingSpinner />}
                             <img
                                 src={selectedThumbnail.image || "/placeholder.svg"}
                                 alt={selectedThumbnail.title}
                                 className="w-full h-auto max-h-[80vh] object-contain"
+                                onLoadStart={() => handleImageLoadStart(`fullscreen-${selectedThumbnail.id}`)}
+                                onLoad={() => handleImageLoadComplete(`fullscreen-${selectedThumbnail.id}`)}
+                                onError={() => handleImageLoadComplete(`fullscreen-${selectedThumbnail.id}`)}
                             />
                         </div>
                     </div>
