@@ -7,6 +7,7 @@ import LearnPhotoshop from '../assets/LearnPhotoshop.jpg';
 import PhotoEditor from '../assets/PhotoEditor.jpg';
 
 
+
 const ThumbnailShowcase = () => {
     const [selectedThumbnail, setSelectedThumbnail] = useState(null)
     const [visibleItems, setVisibleItems] = useState(new Set())
