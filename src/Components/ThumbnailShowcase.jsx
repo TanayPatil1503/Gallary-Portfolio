@@ -5,6 +5,7 @@ import { X, Sparkles, Zap, Target, TrendingUp } from "lucide-react"
 import BackgroundIMG from '../assets/ExampleIMG.jpg';
 import LearnPhotoshop from '../assets/LearnPhotoshop.jpg';
 import PhotoEditor from '../assets/PhotoEditor.jpg';
+import WatchThisVideo from '../assets/WatchThisVideo.jpg';
 
 
 
@@ -28,8 +29,8 @@ const ThumbnailShowcase = () => {
         },
         {
             id: 3,
-            title: "Example Image",
-            image: BackgroundIMG,
+            title: "Watch This Video",
+            image: WatchThisVideo,
         },
         {
             id: 4,
