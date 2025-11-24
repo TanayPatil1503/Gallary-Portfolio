@@ -2,10 +2,11 @@
 
 import { useState, useEffect } from "react"
 import { X, Sparkles, Zap, Target, TrendingUp } from "lucide-react"
-import BackgroundIMG from '../assets/ExampleIMG.jpg';
-import LearnPhotoshop from '../assets/LearnPhotoshop.jpg';
-import PhotoEditor from '../assets/PhotoEditor.jpg';
-import WatchThisVideo from '../assets/WatchThisVideo.jpg';
+import BackgroundIMG from '../../Assets/ExampleIMG.jpg';
+import LearnPhotoshop from '../../Assets/LearnPhotoshop.jpg';
+import PhotoEditor from '../../Assets/PhotoEditor.jpg';
+import WatchThisVideo from '../../Assets/WatchThisVideo.jpg';
+import BeginnerToPro from '../../Assets/BeginnerToPro.jpg';
 
 
 
@@ -34,8 +35,8 @@ const ThumbnailShowcase = () => {
         },
         {
             id: 4,
-            title: "Example Image",
-            image: BackgroundIMG,
+            title: "Beginner To Pro",
+            image: BeginnerToPro,
         },
         {
             id: 5,
