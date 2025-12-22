@@ -7,6 +7,7 @@ import LearnPhotoshop from '../../Assets/LearnPhotoshop.jpg';
 import PhotoEditor from '../../Assets/PhotoEditor.jpg';
 import WatchThisVideo from '../../Assets/WatchThisVideo.jpg';
 import BeginnerToPro from '../../Assets/BeginnerToPro.jpg';
+import IsTeachingWorthIt from '../../Assets/IsTeachingWorthIt.jpg';
 
 
 
@@ -40,8 +41,8 @@ const ThumbnailShowcase = () => {
         },
         {
             id: 5,
-            title: "Example Image",
-            image: BackgroundIMG,
+            title: "Is Teaching Worth It?",
+            image: IsTeachingWorthIt,
         },
         {
             id: 6,
