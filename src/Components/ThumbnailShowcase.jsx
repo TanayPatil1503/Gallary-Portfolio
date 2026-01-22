@@ -8,6 +8,7 @@ import PhotoEditor from '../../Assets/PhotoEditor.jpg';
 import WatchThisVideo from '../../Assets/WatchThisVideo.jpg';
 import BeginnerToPro from '../../Assets/BeginnerToPro.jpg';
 import IsTeachingWorthIt from '../../Assets/IsTeachingWorthIt.jpg';
+import ChatGPTChecklist from '../../Assets/ChatGPTChecklist.jpg';
 
 
 
@@ -46,8 +47,8 @@ const ThumbnailShowcase = () => {
         },
         {
             id: 6,
-            title: "Example Image",
-            image: BackgroundIMG,
+            title: "Chat GPT Checklist",
+            image: ChatGPTChecklist,
         },
         {
             id: 7,
@@ -224,7 +225,6 @@ const ThumbnailShowcase = () => {
                             Results Driven
                         </span>
                     </div>
-
                 </div>
             </div>
 
