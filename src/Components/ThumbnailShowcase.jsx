@@ -9,6 +9,8 @@ import WatchThisVideo from '../../Assets/WatchThisVideo.jpg';
 import BeginnerToPro from '../../Assets/BeginnerToPro.jpg';
 import IsTeachingWorthIt from '../../Assets/IsTeachingWorthIt.jpg';
 import ChatGPTChecklist from '../../Assets/ChatGPTChecklist.jpg';
+import CanvaTutorial from '../../Assets/CanvaTutorial.jpg';
+
 
 
 
@@ -52,8 +54,8 @@ const ThumbnailShowcase = () => {
         },
         {
             id: 7,
-            title: "Example Image",
-            image: BackgroundIMG,
+            title: "Canva Tutorial",
+            image: CanvaTutorial,
         },
         {
             id: 8,
