@@ -28,11 +28,6 @@ const ThumbnailShowcase = () => {
             image: LearnPhotoshop,
         },
         {
-            id: 2,
-            title: "Photo Editor",
-            image: PhotoEditor,
-        },
-        {
             id: 3,
             title: "Watch This Video",
             image: WatchThisVideo,
@@ -42,11 +37,7 @@ const ThumbnailShowcase = () => {
             title: "Beginner To Pro",
             image: BeginnerToPro,
         },
-        {
-            id: 5,
-            title: "Is Teaching Worth It?",
-            image: IsTeachingWorthIt,
-        },
+
         {
             id: 6,
             title: "Chat GPT Checklist",
@@ -58,15 +49,10 @@ const ThumbnailShowcase = () => {
             image: CanvaTutorial,
         },
         {
-            id: 8,
-            title: "Example Image",
-            image: BackgroundIMG,
+            id: 5,
+            title: "Is Teaching Worth It?",
+            image: IsTeachingWorthIt,
         },
-        {
-            id: 9,
-            title: "Example Image",
-            image: BackgroundIMG,
-        }
     ];
 
     const handleImageLoadStart = (thumbnailId) => {
