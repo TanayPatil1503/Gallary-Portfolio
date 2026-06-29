@@ -1,11 +1,11 @@
 // src/App.jsx
 import React from 'react';
-import ThumbnailShowcase from './Components/ThumbnailShowcase';
+import HomePageTP from './Components/HomePageTP';
 
 function App() {
   return (
     <div className="App">
-      <ThumbnailShowcase />
+      <HomePageTP />
     </div>
   );
 }
