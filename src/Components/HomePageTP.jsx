@@ -1687,232 +1687,228 @@ function Contact() {
           </AnimatedSection>
 
           {/* Form */}
-<AnimatedSection delay={0.15}>
-  <div
-    className="glass animated-border"
-    style={{
-      borderRadius: 24,
-      minHeight: 290,
-      position: "relative",
-      overflow: "hidden",
-      background:
-        "linear-gradient(135deg,rgba(15,23,42,.9),rgba(30,41,59,.6))",
-    }}
-  >
-    {/* Glow Orbs */}
+          <AnimatedSection delay={0.15}>
+            <div
+              className="glass animated-border"
+              style={{
+                borderRadius: 24,
+                minHeight: 290,
+                position: "relative",
+                overflow: "hidden",
+                background:
+                  "linear-gradient(135deg,rgba(15,23,42,.9),rgba(30,41,59,.6))",
+              }}
+            >
+              {/* Glow Orbs */}
 
-    <div
-      style={{
-        position: "absolute",
-        width: 260,
-        height: 260,
-        borderRadius: "50%",
-        top: -70,
-        right: -60,
-        background:
-          "radial-gradient(circle,rgba(139,92,246,.30),transparent 70%)",
-        filter: "blur(40px)",
-      }}
-    />
+              <div
+                style={{
+                  position: "absolute",
+                  width: 260,
+                  height: 260,
+                  borderRadius: "50%",
+                  top: -70,
+                  right: -60,
+                  background:
+                    "radial-gradient(circle,rgba(139,92,246,.30),transparent 70%)",
+                  filter: "blur(40px)",
+                }}
+              />
 
-    <div
-      style={{
-        position: "absolute",
-        width: 180,
-        height: 180,
-        borderRadius: "50%",
-        bottom: -40,
-        left: -40,
-        background:
-          "radial-gradient(circle,rgba(6,182,212,.25),transparent 70%)",
-        filter: "blur(40px)",
-      }}
-    />
+              <div
+                style={{
+                  position: "absolute",
+                  width: 180,
+                  height: 180,
+                  borderRadius: "50%",
+                  bottom: -40,
+                  left: -40,
+                  background:
+                    "radial-gradient(circle,rgba(6,182,212,.25),transparent 70%)",
+                  filter: "blur(40px)",
+                }}
+              />
 
-    {/* Background Grid */}
+              {/* Background Grid */}
 
-    <svg
-      style={{
-        position: "absolute",
-        inset: 0,
-        width: "100%",
-        height: "100%",
-        opacity: 0.05,
-      }}
-    >
-      <defs>
-        <pattern
-          id="contact-grid"
-          width="40"
-          height="40"
-          patternUnits="userSpaceOnUse"
-        >
-          <path
-            d="M40 0 L0 0 0 40"
-            stroke="white"
-            strokeWidth="1"
-            fill="none"
-          />
-        </pattern>
-      </defs>
+              <svg
+                style={{
+                  position: "absolute",
+                  inset: 0,
+                  width: "100%",
+                  height: "100%",
+                  opacity: 0.05,
+                }}
+              >
+                <defs>
+                  <pattern
+                    id="contact-grid"
+                    width="40"
+                    height="40"
+                    patternUnits="userSpaceOnUse"
+                  >
+                    <path
+                      d="M40 0 L0 0 0 40"
+                      stroke="white"
+                      strokeWidth="1"
+                      fill="none"
+                    />
+                  </pattern>
+                </defs>
 
-      <rect
-        width="100%"
-        height="100%"
-        fill="url(#contact-grid)"
-      />
-    </svg>
+                <rect width="100%" height="100%" fill="url(#contact-grid)" />
+              </svg>
 
-    {/* Floating Glass Cards */}
+              {/* Floating Glass Cards */}
 
-    <div
-      className="glass"
-      style={{
-        position: "absolute",
-        top: 30,
-        left: 35,
-        width: 170,
-        height: 100,
-        borderRadius: 18,
-        transform: "rotate(-10deg)",
-        animation: "float 6s ease-in-out infinite",
-      }}
-    />
+              <div
+                className="glass"
+                style={{
+                  position: "absolute",
+                  top: 30,
+                  left: 35,
+                  width: 170,
+                  height: 100,
+                  borderRadius: 18,
+                  transform: "rotate(-10deg)",
+                  animation: "float 6s ease-in-out infinite",
+                }}
+              />
 
-    <div
-      className="glass"
-      style={{
-        position: "absolute",
-        top: 40,
-        right: 35,
-        width: 170,
-        height: 100,
-        borderRadius: 18,
-        transform: "rotate(10deg)",
-        animation: "floatAlt 7s ease-in-out infinite",
-      }}
-    />
+              <div
+                className="glass"
+                style={{
+                  position: "absolute",
+                  top: 40,
+                  right: 35,
+                  width: 170,
+                  height: 100,
+                  borderRadius: 18,
+                  transform: "rotate(10deg)",
+                  animation: "floatAlt 7s ease-in-out infinite",
+                }}
+              />
 
-    <div
-      className="glass"
-      style={{
-        position: "absolute",
-        bottom: 30,
-        left: "50%",
-        width: 170,
-        height: 100,
-        borderRadius: 18,
-        transform: "translateX(-50%) rotate(-6deg)",
-        animation: "float 5s ease-in-out infinite",
-      }}
-    />
+              <div
+                className="glass"
+                style={{
+                  position: "absolute",
+                  bottom: 30,
+                  left: "50%",
+                  width: 170,
+                  height: 100,
+                  borderRadius: 18,
+                  transform: "translateX(-50%) rotate(-6deg)",
+                  animation: "float 5s ease-in-out infinite",
+                }}
+              />
 
-    {/* Decorative Rings */}
+              {/* Decorative Rings */}
 
-    <div
-      style={{
-        position: "absolute",
-        width: 170,
-        height: 170,
-        border: "1px solid rgba(139,92,246,.25)",
-        borderRadius: "50%",
-        left: "50%",
-        top: "50%",
-        transform: "translate(-50%,-50%)",
-        zIndex: 1,
-      }}
-    />
+              <div
+                style={{
+                  position: "absolute",
+                  width: 170,
+                  height: 170,
+                  border: "1px solid rgba(139,92,246,.25)",
+                  borderRadius: "50%",
+                  left: "50%",
+                  top: "50%",
+                  transform: "translate(-50%,-50%)",
+                  zIndex: 1,
+                }}
+              />
 
-    <div
-      style={{
-        position: "absolute",
-        width: 260,
-        height: 260,
-        border: "1px solid rgba(6,182,212,.15)",
-        borderRadius: "50%",
-        left: "50%",
-        top: "50%",
-        transform: "translate(-50%,-50%)",
-        zIndex: 1,
-      }}
-    />
+              <div
+                style={{
+                  position: "absolute",
+                  width: 260,
+                  height: 260,
+                  border: "1px solid rgba(6,182,212,.15)",
+                  borderRadius: "50%",
+                  left: "50%",
+                  top: "50%",
+                  transform: "translate(-50%,-50%)",
+                  zIndex: 1,
+                }}
+              />
 
-    {/* ==========================
+              {/* ==========================
         CENTER TEXT
     ========================== */}
 
-    <div
-      style={{
-        position: "absolute",
-        inset: 0,
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "center",
-        alignItems: "center",
-        textAlign: "center",
-        zIndex: 10,
-      }}
-    >
-      <h1
-        style={{
-          margin: 0,
-          fontFamily: "'Space Grotesk', sans-serif",
-          fontSize: "clamp(50px,5vw,76px)",
-          fontWeight: 700,
-          lineHeight: 1,
-          letterSpacing: "-0.04em",
-          background:
-            "linear-gradient(135deg,#c4b5fd,#8b5cf6,#06b6d4)",
-          WebkitBackgroundClip: "text",
-          WebkitTextFillColor: "transparent",
-          textShadow: "0 0 40px rgba(139,92,246,.35)",
-        }}
-      >
-        Tanay Patil
-      </h1>
+              <div
+                style={{
+                  position: "absolute",
+                  inset: 0,
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  textAlign: "center",
+                  zIndex: 10,
+                }}
+              >
+                <h1
+                  style={{
+                    margin: 0,
+                    fontFamily: "'Space Grotesk', sans-serif",
+                    fontSize: "clamp(50px,5vw,76px)",
+                    fontWeight: 700,
+                    lineHeight: 1,
+                    letterSpacing: "-0.04em",
+                    background:
+                      "linear-gradient(135deg,#c4b5fd,#8b5cf6,#06b6d4)",
+                    WebkitBackgroundClip: "text",
+                    WebkitTextFillColor: "transparent",
+                    textShadow: "0 0 40px rgba(139,92,246,.35)",
+                  }}
+                >
+                  Tanay Patil
+                </h1>
 
-      <div
-        style={{
-          display: "flex",
-          alignItems: "center",
-          gap: 16,
-          marginTop: 16,
-        }}
-      >
-        <div
-          style={{
-            width: 60,
-            height: 1,
-            background:
-              "linear-gradient(90deg,transparent,#8b5cf6,#06b6d4)",
-          }}
-        />
+                <div
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    gap: 16,
+                    marginTop: 16,
+                  }}
+                >
+                  <div
+                    style={{
+                      width: 60,
+                      height: 1,
+                      background:
+                        "linear-gradient(90deg,transparent,#8b5cf6,#06b6d4)",
+                    }}
+                  />
 
-        <span
-          style={{
-            color: "#cbd5e1",
-            fontSize: 13,
-            fontFamily: "'JetBrains Mono', monospace",
-            letterSpacing: ".35em",
-            textTransform: "uppercase",
-            whiteSpace: "nowrap",
-          }}
-        >
-          Test Automation Specialist
-        </span>
+                  <span
+                    style={{
+                      color: "#cbd5e1",
+                      fontSize: 13,
+                      fontFamily: "'JetBrains Mono', monospace",
+                      letterSpacing: ".35em",
+                      textTransform: "uppercase",
+                      whiteSpace: "nowrap",
+                    }}
+                  >
+                    Test Automation Specialist
+                  </span>
 
-        <div
-          style={{
-            width: 60,
-            height: 1,
-            background:
-              "linear-gradient(90deg,#06b6d4,#8b5cf6,transparent)",
-          }}
-        />
-      </div>
-    </div>
-  </div>
-</AnimatedSection>
+                  <div
+                    style={{
+                      width: 60,
+                      height: 1,
+                      background:
+                        "linear-gradient(90deg,#06b6d4,#8b5cf6,transparent)",
+                    }}
+                  />
+                </div>
+              </div>
+            </div>
+          </AnimatedSection>
         </div>
       </div>
     </section>
