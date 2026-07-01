@@ -230,10 +230,13 @@ function Nav() {
       }}
     >
       <div
+        onClick={() => scroll("hero")}
         style={{
           fontFamily: "'Space Grotesk',sans-serif",
           fontWeight: 700,
           fontSize: 20,
+          cursor: "pointer",
+          userSelect: "none",
         }}
       >
         <span className="gradient-text">TANAY PATIL</span>
@@ -462,11 +465,6 @@ function Hero() {
                 label: "Email",
               },
               {
-                icon: <Phone size={18} />,
-                href: "tel:9527748093",
-                label: "Phone",
-              },
-              {
                 icon: <Linkedin size={18} />,
                 href: "https://www.linkedin.com/in/tanay-patil-48b442311/",
                 label: "LinkedIn",
@@ -529,7 +527,7 @@ function Hero() {
 function About() {
   const stats = [
     { value: "1+", label: "Year at Solvian", icon: <Zap size={20} /> },
-    { value: "2", label: "Key Projects", icon: <Code2 size={20} /> },
+    { value: "5", label: "Key Projects", icon: <Code2 size={20} /> },
     { value: "8.55", label: "BCA CGPA", icon: <Star size={20} /> },
     { value: "10+", label: "Tech Skills", icon: <Layers size={20} /> },
   ];
@@ -971,10 +969,7 @@ function Projects() {
         }}
       >
         <AnimatedSection>
-          <div
-            className="section-label"
-            style={{ marginBottom: 12 }}
-          >
+          <div className="section-label" style={{ marginBottom: 12 }}>
             Projects
           </div>
 
@@ -1014,10 +1009,7 @@ function Projects() {
           }}
         >
           {projects.map((project, index) => (
-            <AnimatedSection
-              key={project.title}
-              delay={index * 0.12}
-            >
+            <AnimatedSection key={project.title} delay={index * 0.12}>
               <div
                 className="glass animated-border card-hover"
                 style={{
@@ -1564,12 +1556,6 @@ function Contact() {
       href: "mailto:tanaypatil1503@gmail.com",
     },
     {
-      icon: <Phone size={18} />,
-      label: "Phone",
-      value: "+91 9527748093",
-      href: "tel:9527748093",
-    },
-    {
       icon: <MapPin size={18} />,
       label: "Location",
       value: "Pune, Maharashtra, India",
@@ -1697,170 +1683,236 @@ function Contact() {
                   </div>
                 </div>
               ))}
-              <div
-                className="glass"
-                style={{
-                  borderRadius: 14,
-                  padding: "22px",
-                  background:
-                    "linear-gradient(135deg,rgba(139,92,246,.1),rgba(6,182,212,.1))",
-                  border: "1px solid rgba(139,92,246,.2)",
-                }}
-              >
-                <div
-                  style={{
-                    fontSize: 14,
-                    color: "#c4b5fd",
-                    fontFamily: "'Space Grotesk',sans-serif",
-                    fontWeight: 600,
-                    marginBottom: 6,
-                  }}
-                >
-                  Currently available
-                </div>
-                <div
-                  style={{ fontSize: 13, color: "#64748b", lineHeight: 1.6 }}
-                >
-                  Open to full-time roles, freelance projects, and automation
-                  consulting opportunities.
-                </div>
-              </div>
             </div>
           </AnimatedSection>
 
           {/* Form */}
-          <AnimatedSection delay={0.15}>
-            <div
-              className="glass"
-              style={{ borderRadius: 20, padding: "36px 40px" }}
-            >
-              {sent ? (
-                <div style={{ textAlign: "center", padding: "40px 0" }}>
-                  <div style={{ fontSize: 48, marginBottom: 16 }}>✅</div>
-                  <div
-                    style={{
-                      fontFamily: "'Space Grotesk',sans-serif",
-                      fontWeight: 600,
-                      fontSize: 22,
-                      color: "#e2e8f0",
-                      marginBottom: 8,
-                    }}
-                  >
-                    Message sent!
-                  </div>
-                  <p style={{ color: "#64748b" }}>
-                    I'll get back to you within 24 hours.
-                  </p>
-                </div>
-              ) : (
-                <div
-                  style={{ display: "flex", flexDirection: "column", gap: 20 }}
-                >
-                  <div
-                    style={{
-                      display: "grid",
-                      gridTemplateColumns: "1fr 1fr",
-                      gap: 16,
-                    }}
-                  >
-                    <div>
-                      <label
-                        style={{
-                          display: "block",
-                          fontSize: 13,
-                          color: "#64748b",
-                          marginBottom: 6,
-                          fontFamily: "'Space Grotesk',sans-serif",
-                        }}
-                      >
-                        Name
-                      </label>
-                      <input
-                        style={inputStyle}
-                        placeholder="Your name"
-                        value={form.name}
-                        onChange={(e) =>
-                          setForm((f) => ({ ...f, name: e.target.value }))
-                        }
-                        onFocus={(e) =>
-                          (e.target.style.borderColor = "rgba(139,92,246,.5)")
-                        }
-                        onBlur={(e) =>
-                          (e.target.style.borderColor = "rgba(255,255,255,.1)")
-                        }
-                      />
-                    </div>
-                    <div>
-                      <label
-                        style={{
-                          display: "block",
-                          fontSize: 13,
-                          color: "#64748b",
-                          marginBottom: 6,
-                          fontFamily: "'Space Grotesk',sans-serif",
-                        }}
-                      >
-                        Email
-                      </label>
-                      <input
-                        style={inputStyle}
-                        placeholder="your@email.com"
-                        type="email"
-                        value={form.email}
-                        onChange={(e) =>
-                          setForm((f) => ({ ...f, email: e.target.value }))
-                        }
-                        onFocus={(e) =>
-                          (e.target.style.borderColor = "rgba(139,92,246,.5)")
-                        }
-                        onBlur={(e) =>
-                          (e.target.style.borderColor = "rgba(255,255,255,.1)")
-                        }
-                      />
-                    </div>
-                  </div>
-                  <div>
-                    <label
-                      style={{
-                        display: "block",
-                        fontSize: 13,
-                        color: "#64748b",
-                        marginBottom: 6,
-                        fontFamily: "'Space Grotesk',sans-serif",
-                      }}
-                    >
-                      Message
-                    </label>
-                    <textarea
-                      style={{
-                        ...inputStyle,
-                        minHeight: 140,
-                        resize: "vertical",
-                      }}
-                      placeholder="Tell me about your project or opportunity..."
-                      value={form.message}
-                      onChange={(e) =>
-                        setForm((f) => ({ ...f, message: e.target.value }))
-                      }
-                      onFocus={(e) =>
-                        (e.target.style.borderColor = "rgba(139,92,246,.5)")
-                      }
-                      onBlur={(e) =>
-                        (e.target.style.borderColor = "rgba(255,255,255,.1)")
-                      }
-                    />
-                  </div>
-                  <button
-                    className="btn-primary"
-                    style={{ width: "100%", justifyContent: "center" }}
-                    onClick={handleSubmit}
-                  >
-                    Send Message <ArrowRight size={16} />
-                  </button>
-                </div>
-              )}
-            </div>
-          </AnimatedSection>
+<AnimatedSection delay={0.15}>
+  <div
+    className="glass animated-border"
+    style={{
+      borderRadius: 24,
+      minHeight: 290,
+      position: "relative",
+      overflow: "hidden",
+      background:
+        "linear-gradient(135deg,rgba(15,23,42,.9),rgba(30,41,59,.6))",
+    }}
+  >
+    {/* Glow Orbs */}
+
+    <div
+      style={{
+        position: "absolute",
+        width: 260,
+        height: 260,
+        borderRadius: "50%",
+        top: -70,
+        right: -60,
+        background:
+          "radial-gradient(circle,rgba(139,92,246,.30),transparent 70%)",
+        filter: "blur(40px)",
+      }}
+    />
+
+    <div
+      style={{
+        position: "absolute",
+        width: 180,
+        height: 180,
+        borderRadius: "50%",
+        bottom: -40,
+        left: -40,
+        background:
+          "radial-gradient(circle,rgba(6,182,212,.25),transparent 70%)",
+        filter: "blur(40px)",
+      }}
+    />
+
+    {/* Background Grid */}
+
+    <svg
+      style={{
+        position: "absolute",
+        inset: 0,
+        width: "100%",
+        height: "100%",
+        opacity: 0.05,
+      }}
+    >
+      <defs>
+        <pattern
+          id="contact-grid"
+          width="40"
+          height="40"
+          patternUnits="userSpaceOnUse"
+        >
+          <path
+            d="M40 0 L0 0 0 40"
+            stroke="white"
+            strokeWidth="1"
+            fill="none"
+          />
+        </pattern>
+      </defs>
+
+      <rect
+        width="100%"
+        height="100%"
+        fill="url(#contact-grid)"
+      />
+    </svg>
+
+    {/* Floating Glass Cards */}
+
+    <div
+      className="glass"
+      style={{
+        position: "absolute",
+        top: 30,
+        left: 35,
+        width: 170,
+        height: 100,
+        borderRadius: 18,
+        transform: "rotate(-10deg)",
+        animation: "float 6s ease-in-out infinite",
+      }}
+    />
+
+    <div
+      className="glass"
+      style={{
+        position: "absolute",
+        top: 40,
+        right: 35,
+        width: 170,
+        height: 100,
+        borderRadius: 18,
+        transform: "rotate(10deg)",
+        animation: "floatAlt 7s ease-in-out infinite",
+      }}
+    />
+
+    <div
+      className="glass"
+      style={{
+        position: "absolute",
+        bottom: 30,
+        left: "50%",
+        width: 170,
+        height: 100,
+        borderRadius: 18,
+        transform: "translateX(-50%) rotate(-6deg)",
+        animation: "float 5s ease-in-out infinite",
+      }}
+    />
+
+    {/* Decorative Rings */}
+
+    <div
+      style={{
+        position: "absolute",
+        width: 170,
+        height: 170,
+        border: "1px solid rgba(139,92,246,.25)",
+        borderRadius: "50%",
+        left: "50%",
+        top: "50%",
+        transform: "translate(-50%,-50%)",
+        zIndex: 1,
+      }}
+    />
+
+    <div
+      style={{
+        position: "absolute",
+        width: 260,
+        height: 260,
+        border: "1px solid rgba(6,182,212,.15)",
+        borderRadius: "50%",
+        left: "50%",
+        top: "50%",
+        transform: "translate(-50%,-50%)",
+        zIndex: 1,
+      }}
+    />
+
+    {/* ==========================
+        CENTER TEXT
+    ========================== */}
+
+    <div
+      style={{
+        position: "absolute",
+        inset: 0,
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+        alignItems: "center",
+        textAlign: "center",
+        zIndex: 10,
+      }}
+    >
+      <h1
+        style={{
+          margin: 0,
+          fontFamily: "'Space Grotesk', sans-serif",
+          fontSize: "clamp(50px,5vw,76px)",
+          fontWeight: 700,
+          lineHeight: 1,
+          letterSpacing: "-0.04em",
+          background:
+            "linear-gradient(135deg,#c4b5fd,#8b5cf6,#06b6d4)",
+          WebkitBackgroundClip: "text",
+          WebkitTextFillColor: "transparent",
+          textShadow: "0 0 40px rgba(139,92,246,.35)",
+        }}
+      >
+        Tanay Patil
+      </h1>
+
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          gap: 16,
+          marginTop: 16,
+        }}
+      >
+        <div
+          style={{
+            width: 60,
+            height: 1,
+            background:
+              "linear-gradient(90deg,transparent,#8b5cf6,#06b6d4)",
+          }}
+        />
+
+        <span
+          style={{
+            color: "#cbd5e1",
+            fontSize: 13,
+            fontFamily: "'JetBrains Mono', monospace",
+            letterSpacing: ".35em",
+            textTransform: "uppercase",
+            whiteSpace: "nowrap",
+          }}
+        >
+          Test Automation Specialist
+        </span>
+
+        <div
+          style={{
+            width: 60,
+            height: 1,
+            background:
+              "linear-gradient(90deg,#06b6d4,#8b5cf6,transparent)",
+          }}
+        />
+      </div>
+    </div>
+  </div>
+</AnimatedSection>
         </div>
       </div>
     </section>
@@ -1897,7 +1949,6 @@ function Footer() {
       <div style={{ display: "flex", gap: 20 }}>
         {[
           { icon: <Mail size={16} />, href: "mailto:tanaypatil1503@gmail.com" },
-          { icon: <Phone size={16} />, href: "tel:9527748093" },
           {
             icon: <Linkedin size={16} />,
             href: "https://www.linkedin.com/in/tanay-patil-48b442311/",
