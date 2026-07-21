@@ -1004,7 +1004,6 @@ function Projects() {
           className="proj-grid"
           style={{
             display: "grid",
-            gridTemplateColumns: "repeat(auto-fit,minmax(420px,1fr))",
             gap: 30,
           }}
         >
@@ -1730,7 +1729,7 @@ function Contact() {
               />
 
               {/* Background Grid */}
-
+              
               <svg
                 style={{
                   position: "absolute",
