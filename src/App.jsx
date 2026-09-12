@@ -1,15 +1,12 @@
 // src/App.jsx
 import React from 'react';
-import HomePageTP from './Components/HomePageTP';
-import ProjectDetail from './Components/ProjectDetail';
+import HomePage from './Components/tanay_patil_portfolio';
 
 function App() {
-  const params = new URLSearchParams(window.location.search);
-  const projectKey = params.get('project');
 
   return (
     <div className="App">
-      {projectKey ? <ProjectDetail /> : <HomePageTP />}
+      <HomePage/>
     </div>
   );
 }
